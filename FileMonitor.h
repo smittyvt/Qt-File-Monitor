@@ -31,6 +31,7 @@ namespace Utility
 
         void addFileToMonitor(QFile* pFile);
         void removeFileFromMonitor(QFile* pFile);
+        bool isFileMonitored(QFile* pFile);
         void changeMonitorTime(int nSecs);
     private:
         void onMonitorFiles();
