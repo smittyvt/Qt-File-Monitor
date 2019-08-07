@@ -1,6 +1,7 @@
 // Qt File monitoring class implementation file
 
 // System includes
+#include <iostream>
 #include <memory>
 
 // Qt includes
@@ -57,9 +58,7 @@ void CFileMonitor::addFileToMonitor(QFile* pFile)
 // If found, remove a given file from file monitoring
 void CFileMonitor::removeFileFromMonitor(QFile* pFile)
 {
-    std::vector<QFile*>::const_iterator it = std::find(m_FilesToMonitor.begin(), m_FilesToMonitor.end(), pFile);
-    
-    if (it != m_FilesToMonitor.end())
+    if (auto it = std::find(m_FilesToMonitor.begin(), m_FilesToMonitor.end(), pFile); it != m_FilesToMonitor.end())
     {
         m_FilesToMonitor.erase(it);
         m_FileModMap.erase(pFile);
