@@ -1,10 +1,8 @@
 // Qt file monitoring class. Usage is as follows:
-// Make the CFileMonitor class a member in your file loading class. In the
-// file loading class constructor, call startFileMonitoring(). In the file
-// loading class destructor, call stopFileMonitoring(). When loading files,
-// call the various file monitor methods to add or remove files from
-// monitoring. The onMonitorFiles() callback can be used to notify the
-// appropriate code when a file has changed.
+// Make the CFileMonitor class a member in your file loading class.
+// When loading files, call the various file monitor methods to add
+// or remove files from monitoring. The onMonitorFiles() callback
+// can be used to notify the appropriate code when a file has changed.
 
 #pragma once
 
@@ -36,9 +34,11 @@ namespace Utility
     private:
         void onMonitorFiles();
 
-        // We don't want copy constructors, or operator=
-        CFileMonitor(const CFileMonitor&) = delete;
-        CFileMonitor& operator=(const CFileMonitor&) = delete;
+        // We don't want copy or move constructors/assignment operators
+        CFileMonitor(const CFileMonitor& rhs) = delete;
+        CFileMonitor& operator=(const CFileMonitor& rhs) = delete;
+        CFileMonitor(CFileMonitor&& rhs) = delete;
+        CFileMonitor& operator=(CFileMonitor&& rhs) = delete;
     private:
     	QTimer*                     m_pFileMonitor;
         std::map<QFile*, QDateTime> m_FileModMap;
