@@ -25,7 +25,7 @@ namespace Utility
 	{
 	public:
 		CFileMonitor();
-		~CFileMonitor();
+		virtual ~CFileMonitor();
 
         void addFileToMonitor(QFile* pFile);
         void removeFileFromMonitor(QFile* pFile);
@@ -40,7 +40,7 @@ namespace Utility
         CFileMonitor(CFileMonitor&& rhs) = delete;
         CFileMonitor& operator=(CFileMonitor&& rhs) = delete;
     private:
-    	QTimer*                     m_pFileMonitor;
+    	QTimer*                       m_pFileMonitor;
         std::map<QFile*, QDateTime> m_FileModMap;
         std::vector<QFile*>         m_FilesToMonitor;
 	};
